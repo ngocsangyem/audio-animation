@@ -117,17 +117,21 @@
     }
     if (galleryAudioContainer && galleryAudioContainer.length > 0) {
         Array.prototype.forEach.call(galleryAudioContainer, function(element) {
-            // const audio = element.querySelector('.audio');
-            const audioSrc = element.getAttribute('data-audio');
-            const audio = new Audio(audioSrc);
+            const audio = element.querySelector('.audio');
+            // const audioSrc = element.getAttribute('data-audio');
+            // const audio = new Audio(audioSrc);
             const audioBtn = element.querySelector('.gallery-audio-button');
+            audio.muted = true;
+
             audioBtn.addEventListener('click', function(event) {
-                if (!audio.paused) {
+                if (!audio.muted) {
                     audioBtn.classList.add('is-muted');
-                    audio.pause();
+                    audio.muted = true;
+                    // audio.pause();
                 } else {
                     audioBtn.classList.remove('is-muted');
-                    audio.play();
+                    // audio.play();
+                    audio.muted = false;
                 }
             });
         });
